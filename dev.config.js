@@ -2,6 +2,7 @@ const path = require('path')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   mode: 'development',
@@ -9,6 +10,12 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dest'),
     filename: 'bundle.[hash].js',
+  },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+      '@core': path.resolve(__dirname, 'src/core'),
+    },
   },
   module: {
     rules: [
@@ -20,6 +27,14 @@ module.exports = {
           loader: 'babel-loader',
         },
       },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+      },
+      {
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+      },
     ],
   },
   plugins: [
@@ -29,6 +44,9 @@ module.exports = {
     }),
     new CopyPlugin({
       patterns: [{from: 'src/assets', to: ''}],
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'bundle.[hash].css',
     }),
   ],
 }
