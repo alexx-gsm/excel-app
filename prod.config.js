@@ -3,26 +3,20 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, 'dev'),
-    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'build'),
+    filename: 'bundle.[hash].js',
   },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
       '@core': path.resolve(__dirname, 'src/core'),
     },
-  },
-  devtool: 'source-map',
-  devServer: {
-    contentBase: path.join(__dirname, 'dev'),
-    compress: true,
-    open: true,
-    port: 9000,
   },
   module: {
     rules: [
@@ -48,12 +42,22 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: 'src/index.html',
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true
+      }
     }),
     new CopyPlugin({
       patterns: [{from: 'src/assets', to: ''}],
     }),
     new MiniCssExtractPlugin({
-      filename: 'bundle.css',
+      filename: 'bundle.[hash].css',
     }),
   ],
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new CssMinimizerPlugin(),
+    ],
+  },
 }
