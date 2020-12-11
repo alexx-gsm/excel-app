@@ -3,14 +3,14 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 
 module.exports = {
   mode: 'production',
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: 'bundle.[hash].js',
+    filename: 'bundle.[fullhash].js',
   },
   resolve: {
     alias: {
@@ -30,6 +30,7 @@ module.exports = {
       },
       {
         test: /\.s[ac]ss$/i,
+        include: path.resolve(__dirname, 'src/core/scss'),
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
       {
@@ -44,20 +45,18 @@ module.exports = {
       template: 'src/index.html',
       minify: {
         removeComments: true,
-        collapseWhitespace: true
-      }
+        collapseWhitespace: true,
+      },
     }),
     new CopyPlugin({
       patterns: [{from: 'src/assets', to: ''}],
     }),
     new MiniCssExtractPlugin({
-      filename: 'bundle.[hash].css',
+      filename: 'bundle.[fullhash].css',
     }),
   ],
   optimization: {
     minimize: true,
-    minimizer: [
-      new CssMinimizerPlugin(),
-    ],
+    minimizer: [new CssMinimizerPlugin()],
   },
 }
