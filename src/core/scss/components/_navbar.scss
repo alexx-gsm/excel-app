@@ -1,0 +1,11 @@
+@import "../variables";
+@import "../mixins";
+
+.navbar {
+  $_: '.nav';
+  background-color: whitesmoke;
+
+  .button {
+    @include button(red)
+  }
+}

@@ -1,46 +1,106 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Excel App</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Excel App</title>
-</head>
-
-<body>
-  <div id="app" class="container-fluid">
-    <div class="excel">
-      <!-- HEADER START -->
-      <div class="excel__header">
-        <div class="header">
-          HEADER
+  <body>
+    <!-- NAVBAR:START -->
+    <nav class="navbar fixed-top navbar-light bg-light">
+      <div class="container-fluid">
+        <div class="d-flex justify-content-between w-100">
+          <div class="input-group input-group-sm">
+            <input
+              class="form-control"
+              type="search"
+              placeholder="Table name"
+              aria-label="TableName"
+            />
+          </div>
+          <button type="button" class="button">
+            <svg class="bi" width="32" height="32" fill="currentColor">
+              <use xlink:href="bootstrap-icons.svg#x" />
+            </svg>
+          </button>
+          <button type="button" class="button">
+            <svg class="bi" width="32" height="32" fill="currentColor">
+              <use xlink:href="bootstrap-icons.svg#box-arrow-right" />
+            </svg>
+          </button>
         </div>
       </div>
-      <!-- HEADER END -->
+    </nav>
+    <!-- NAVBAR:END -->
 
-      <!-- APPBAR START -->
-      <div class="excel__appbar">
-        <div class="appbar"></div>
-      </div>
-      <!-- APPBAR END -->
-
-      <!-- FORMULA START -->
-      <div class="excel__formula">
-        <div class="formula"></div>
-      </div>
-      <!-- FORMULA END -->
-
-      <!-- TABLE START -->
-      <div class="excel__table">
-        <div class="table">
-          <h1>Test font</h1>
+    <!-- MAIN:START -->
+    <div id="app" class="container-fluid">
+      <div class="excel">
+        <!-- HEADER START -->
+        <div class="excel__header">
+          <div class="header row justify-content-between p-3">
+            <div class="col-auto">
+              <div class="input-group input-group-lg">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Table name"
+                  aria-label="TableName"
+                  aria-describedby="basic-addon1"
+                />
+              </div>
+            </div>
+            <div class="col-auto">
+              <button type="button" class="btn btn-link">
+                <svg class="bi" width="32" height="32" fill="currentColor">
+                  <use xlink:href="bootstrap-icons.svg#x-square" />
+                </svg>
+              </button>
+              <button type="button" class="btn btn-link">
+                <svg class="bi" width="32" height="32" fill="currentColor">
+                  <use xlink:href="bootstrap-icons.svg#box-arrow-right" />
+                </svg>
+              </button>
+            </div>
+          </div>
         </div>
+        <!-- HEADER END -->
+
+        <!-- TOOLBAR START -->
+        <div class="excel__toolbar">
+          <div class="toolbar"></div>
+        </div>
+        <!-- TOOLBAR END -->
+
+        <!-- FORMULA START -->
+        <div class="excel__formula">
+          <div class="formula"></div>
+        </div>
+        <!-- FORMULA END -->
+
+        <!-- TABLE START -->
+        <div class="excel__table">
+          <div class="table">
+            <h1>Test font</h1>
+            <svg class="bi" width="32" height="32" fill="currentColor">
+              <use xlink:href="bootstrap-icons.svg#heart-fill" />
+            </svg>
+            <svg class="bi" width="32" height="32" fill="currentColor">
+              <use xlink:href="bootstrap-icons.svg#toggles" />
+            </svg>
+            <svg class="bi" width="32" height="32" fill="currentColor">
+              <use xlink:href="bootstrap-icons.svg#box-arrow-right" />
+            </svg>
+          </div>
+        </div>
+        <!-- TABLE END -->
       </div>
-      <!-- TABLE END -->
     </div>
-  </div>
-</body>
-
+    <!-- MAIN:END -->
+  </body>
 </html>

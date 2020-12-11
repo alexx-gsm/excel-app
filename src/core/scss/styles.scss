@@ -5,8 +5,9 @@
 @import './variables';
 @import './mixins';
 
-@import './components//main';
+@import 'components/navbar';
+@import './components/main';
 @import './components/header';
-@import './components/appbar';
+@import 'components/toolbar';
 @import './components/formula';
 @import './components/table';
