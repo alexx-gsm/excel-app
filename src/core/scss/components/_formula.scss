@@ -1,4 +1,29 @@
+@import "../variables";
+
 .formula {
   $_: '.formula';
-  background-color: azure;
+  grid-area: formula;
+  background-color: $color-white;
+  border-bottom: 1px solid $color-border;
+  margin: 0;
+  display: flex;
+  align-items: center;
+
+  .info {
+    font-size: 18px;
+    min-width: $info-cell-width;
+    text-align: center;
+    font-style: italic;
+    border-right: 1px solid $color-border;
+    color: $color-gray;
+  }
+
+  .input {
+    font-size: 12px;
+    width: 100%;
+    margin: 1px;
+    padding: 0 8px;
+    outline: none;
+    color: $color-black;
+  }
 }

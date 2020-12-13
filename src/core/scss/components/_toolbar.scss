@@ -1,4 +1,13 @@
+@import "../variables";
+@import "../mixins";
+
 .toolbar {
   $_: '.toolbar';
-  background-color: aquamarine;
+  grid-area: toolbar;
+  background-color: $color-white;
+  border-bottom: 1px solid $color-border;
+
+  .button {
+    @include button(green)
+  }
 }

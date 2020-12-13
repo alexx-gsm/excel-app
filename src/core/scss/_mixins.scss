@@ -23,7 +23,7 @@
   &:hover {
     cursor: pointer;
     background-color: #eeeeee;
-    border-color: $border-color;
+    border-color: $color-border;
   }
 
   &:active,
@@ -36,4 +36,12 @@
   &:focus {
     outline: none;
   }
+}
+
+@mixin cell() {
+  height: $cell-height;
+  line-height: $cell-height;
+  text-align: center;
+  border-right: 1px solid $color-border-light;
+  border-bottom: 1px solid $color-border-light;
 }

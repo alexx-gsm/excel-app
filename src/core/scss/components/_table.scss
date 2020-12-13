@@ -1,3 +1,51 @@
+@import "../variables";
+@import "../mixins";
+
 .table {
   $_: '.table';
+  grid-area: table;
+  background-color: $color-white;
+  margin: 0;
+  overflow: auto;
+
+  .table-row {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin: 0;
+
+    .info {
+      @include cell();
+      min-width: $info-cell-width;
+      background-color: $color-background-header-cell;
+      color: $color-white;
+    }
+
+    .data {
+      display: flex;
+    }
+
+    .column {
+      @include cell();
+      min-width: $data-cell-width;
+      padding: 0;
+
+      &.column-header {
+        background-color: $color-background-header-cell;
+        color: $color-white;
+      }
+
+      &.selected {
+        border: 1px solid green;
+        margin-top: -1px;
+        margin-left: -1px;
+      }
+
+      &:focus {
+        outline: none;
+        text-align: left;
+        padding: 0 4px;
+      }
+    }
+  }
 }

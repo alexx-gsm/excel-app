@@ -1,7 +1,29 @@
+@import '../variables';
+
 .header {
   $_: '.header';
-  background-color: whitesmoke;
-  .btn-link {
-    color: #ced4da;
+  grid-area: header;
+  background-color: $color-white;
+  border-bottom: 1px solid $color-border;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+
+  input {
+    border-color: $color-white;
+
+    &:hover {
+      border-color: $color-border;
+    }
+  }
+
+  #{$_}-buttons {
+    display: flex;
+    align-items: center;
+
+    .btn {
+      margin-left: 8px;
+    }
   }
 }

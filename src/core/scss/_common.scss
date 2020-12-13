@@ -1,6 +1,15 @@
+@import './_variables.scss';
+
+html,
+body,
+.app {
+  height: 100vh;
+}
+
 body {
   font-family: 'Roboto', sans-serif;
 }
+
 h1 {
   color: $color_red;
 }
