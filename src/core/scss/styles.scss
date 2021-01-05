@@ -3,13 +3,13 @@
 
 @import './fonts';
 @import './variables';
-@import "./common";
+@import './common';
 @import './mixins';
 
-
-@import 'components/navbar';
+@import './components/navbar';
 @import './components/main';
 @import './components/header';
-@import 'components/toolbar';
+@import './components/toolbar';
 @import './components/formula';
 @import './components/table';
+@import './components/dashboard';

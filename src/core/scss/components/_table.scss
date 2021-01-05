@@ -1,5 +1,5 @@
-@import "../variables";
-@import "../mixins";
+@import '../variables';
+@import '../mixins';
 
 .table {
   $_: '.table';
@@ -36,7 +36,7 @@
       }
 
       &.selected {
-        border: 1px solid green;
+        border: 1px solid $color-green;
         margin-top: -1px;
         margin-left: -1px;
       }
