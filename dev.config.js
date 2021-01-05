@@ -36,7 +36,7 @@ module.exports = {
       },
       {
         test: /\.s[ac]ss$/i,
-        include: path.resolve(__dirname, 'src/core/scss'),
+        include: path.resolve(__dirname, 'src/scss'),
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
       {
