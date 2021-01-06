@@ -1,6 +1,8 @@
 class Dom {
   constructor(selector) {
-    this.$el = typeof selector === 'string' ? document.querySelector(selector) : selector
+    this.$el = typeof selector === 'string'
+      ? document.querySelector(selector)
+      : selector
   }
 
   html(html) {
@@ -13,16 +15,24 @@ class Dom {
     return this.$el.outerHTML
   }
 
+  clear() {
+    this.html('')
+
+    return this
+  }
+
   append(node) {
     this.$el.append(node.$el ?? node)
 
     return this
   }
 
-  clear() {
-    this.html('')
+  on(eventType, cb) {
+    this.$el.addEventListener(eventType, cb)
+  }
 
-    return this
+  off(eventType, cb) {
+    this.$el.removeEventListener(eventType, cb)
   }
 }
 

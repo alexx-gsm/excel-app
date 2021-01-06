@@ -3,6 +3,15 @@ import ExcelComponent from '@core/ExcelComponent'
 class Toolbar extends ExcelComponent {
   static className = 'toolbar'
 
+  constructor($root) {
+    super($root, {
+      name: 'Toolbar',
+      listeners: ['click']
+    })
+
+    this.onClick = this.onClick.bind(this)
+  }
+
   toHTML() {
     return `
       <button class="button">
@@ -41,6 +50,11 @@ class Toolbar extends ExcelComponent {
         </svg>
       </button>
     `
+  }
+
+  onClick(event) {
+    console.log('--- button click');
+    console.log('--- target: ', event.target);
   }
 }
 

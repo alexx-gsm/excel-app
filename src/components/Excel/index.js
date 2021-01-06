@@ -1,4 +1,4 @@
-import {$} from '@/utils/dom'
+import { $ } from '@/utils/dom'
 
 class Excel {
   static className = 'excel'
@@ -8,27 +8,40 @@ class Excel {
     this.components = options?.components || []
   }
 
-  renderComponent(Component) {
-    const $wrap = $.create('div', Component.className)
-    const component = new Component($wrap)
-    $wrap.html(component.toHTML())
+  initComponent = component => component.init()
 
-    return $wrap
-  }
-
-  renderApp() {
+  getApp() {
     const $app = $.create('div', Excel.className)
 
-    this.components.forEach((Component) => {
-      const $component = this.renderComponent(Component)
-      $app.append($component)
+    this.components = this.components.map(Component => {
+      const $el = $.create('div', Component.className)
+      const component = new Component($el)
+      // for debug
+      console.log('component', component);
+      if (component.name) {
+        window['c' + component.name] = component
+      }
+      $el.html(component.toHTML())
+      $app.append($el)
+
+      return component
     })
 
     return $app
   }
 
+  renderApp() {
+    const app = this.getApp()
+    this.$root.append(app)
+  }
+
+  initApp() {
+    this.components.forEach(this.initComponent)
+  }
+
   render() {
-    this.$root.append(this.renderApp())
+    this.renderApp()
+    this.initApp()
   }
 }
 
