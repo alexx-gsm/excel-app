@@ -8,11 +8,16 @@ function toChar(_, i) {
 }
 
 function createHeaderCell(char) {
-  return `<div class="column column-header">${char}</div>`
+  return `
+    <div class="column column-header" data-type="resizable" data-column="col-${char}">
+      ${char}
+      <div class="resize-marker" data-resize="col"></div>
+    </div>
+  `
 }
 
-function createCell() {
-  return `<div class="column" contenteditable></div>`
+function createCell(char) {
+  return `<div class="column" contenteditable data-column="col-${char}"></div>`
 }
 
 function createRow(renderCell, index) {
@@ -23,8 +28,11 @@ function createRow(renderCell, index) {
     .join('')
 
   return `
-    <div class="table-row">
-      <div class="info">${index ?? ''}</div>
+    <div class="table-row" data-type="resizable">
+      <div class="info">
+        ${index ?? ''}
+        ${index > 0 ? '<div class="resize-marker" data-resize="row"></div>' : ''}
+      </div>
       <div class="data">${content ?? ''}</div>
     </div>
   `
