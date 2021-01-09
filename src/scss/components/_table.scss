@@ -13,26 +13,60 @@
     flex-wrap: nowrap;
     align-items: center;
     margin: 0;
+    height: $cell-height;
+    min-height: $cell-height;
+
 
     .info {
       @include cell();
+      position: relative;
       min-width: $info-cell-width;
+      width: $info-cell-width;
       background-color: $color-background-header-cell;
       color: $color-white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+
+      .resize-marker {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background-color: maroon;
+        opacity: 0;
+        padding: 0;
+        z-index: 10;
+
+        &:hover,
+        &.is-visible {
+          opacity: 1;
+          cursor: row-resize;
+        }
+      }
     }
 
     .data {
       display: flex;
+      height: 100%;
     }
 
     .column {
       @include cell();
-      min-width: $data-cell-width;
+      width: $data-cell-width;
+      min-width: $data-cell-min-width;
       padding: 0;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
       &.column-header {
         background-color: $color-background-header-cell;
         color: $color-white;
+        user-select: none;
       }
 
       &.selected {
@@ -45,6 +79,23 @@
         outline: none;
         text-align: left;
         padding: 0 4px;
+      }
+
+      .resize-marker {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        width: 4px;
+        background-color: maroon;
+        opacity: 0;
+        z-index: 10;
+
+        &:hover,
+        &.is-visible {
+          opacity: 1;
+          cursor: col-resize;
+        }
       }
     }
   }

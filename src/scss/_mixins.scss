@@ -39,8 +39,7 @@
 }
 
 @mixin cell() {
-  height: $cell-height;
-  line-height: $cell-height;
+  height: 100%;
   text-align: center;
   border-right: 1px solid $color-border-light;
   border-bottom: 1px solid $color-border-light;
