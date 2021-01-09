@@ -9,7 +9,7 @@ class Table extends ExcelComponent {
   constructor($root) {
     super($root, {
       name: 'Table',
-      listeners: ['click', 'mousedown', 'mouseup']
+      listeners: ['click', 'mousedown']
     })
 
     this.$root = $root
