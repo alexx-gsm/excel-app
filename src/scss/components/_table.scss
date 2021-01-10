@@ -69,16 +69,18 @@
         user-select: none;
       }
 
-      &.selected {
-        border: 1px solid $color-green;
-        margin-top: -1px;
-        margin-left: -1px;
-      }
-
       &:focus {
-        outline: none;
+        outline: 0;
         text-align: left;
         padding: 0 4px;
+      }
+
+      &.selected {
+        outline: 1px solid $color-green;
+        z-index: 8;
+        position: relative;
+        left: -1px;
+        top: -1px;
       }
 
       .resize-marker {

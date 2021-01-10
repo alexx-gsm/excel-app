@@ -7,45 +7,51 @@ function toChar(_, i) {
   return String.fromCharCode(CODES.A + i)
 }
 
-function createHeaderCell(char) {
-  return `
-    <div class="column column-header" data-type="resizable" data-column="col-${char}">
-      ${char}
-      <div class="resize-marker" data-resize="col"></div>
-    </div>
-  `
+function createHeaderCell(char, _rowIndex, columnIndex) {
+  return `<div class="column column-header"
+               data-type="resizable"
+               data-column="${columnIndex}">
+            ${char}
+            <div class="resize-marker" data-resize="col"></div>
+          </div>`
 }
 
-function createCell(char) {
-  return `<div class="column" contenteditable data-column="col-${char}"></div>`
+function createCell(_char, rowIndex, columnIndex) {
+  return `<div class="column"
+               contenteditable
+               data-cell="${rowIndex}:${columnIndex}"
+               data-column="${columnIndex}"></div>`
 }
 
-function createRow(renderCell, index) {
-  const content = Array(CODES.Z - CODES.A + 1)
-    .fill()
-    .map(toChar)
-    .map(renderCell)
-    .join('')
+function createRow(renderCell) {
+  return function (_, rowIndex) {
+    const content = Array(CODES.Z - CODES.A + 1)
+      .fill()
+      .map(toChar)
+      .map((char, columnIndex) => renderCell(char, rowIndex, columnIndex))
+      .join('')
 
-  return `
-    <div class="table-row" data-type="resizable">
-      <div class="info">
-        ${index ?? ''}
-        ${index > 0 ? '<div class="resize-marker" data-resize="row"></div>' : ''}
+    return `
+      <div class="table-row" data-type="resizable">
+        <div class="info">
+          ${rowIndex >= 0 ? rowIndex + 1 : ''}
+          ${rowIndex >= 0 ? '<div class="resize-marker" data-resize="row"></div>' : ''}
+        </div>
+        <div class="data">${content ?? ''}</div>
       </div>
-      <div class="data">${content ?? ''}</div>
-    </div>
-  `
+    `
+  }
 }
 
 function createTableHeader() {
-  return createRow(createHeaderCell)
+  // TODO: refactor self-called function
+  return createRow(createHeaderCell)()
 }
 
 function createTableBody(rowsCount) {
   return Array(rowsCount)
     .fill()
-    .map((_, i) => createRow(createCell, i + 1))
+    .map(createRow(createCell))
     .join('')
 }
 

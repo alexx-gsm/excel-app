@@ -39,6 +39,10 @@ class Dom {
     return $(this.$el.closest(selector))
   }
 
+  find(selector) {
+    return $(this.$el.querySelector(selector))
+  }
+
   findAll(selector) {
     const items = this.$el.querySelectorAll(selector)
     return Array.from(items).map(el => $(el))
